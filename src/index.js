@@ -6,25 +6,10 @@ import reportWebVitals from './reportWebVitals';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-console.log(store.getState());
-
-const unsubscribe = store.subscribe(() =>
-	console.log('State after dispatch ', store.getState())
-);
-
-store.dispatch({type: 'count/increment', payload: 1});
-store.dispatch({type: 'count/increment', payload: 1});
-store.dispatch({type: 'count/increment', payload: 1});
-
-store.dispatch({type: 'count/decrease', payload: 1});
-store.dispatch({type: 'count/incrementOdd', payload: 1});
-
-unsubscribe();
-
 ReactDOM.render(
   <React.StrictMode>
   	<CssBaseline />
-    <App />
+    <App store={store}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
