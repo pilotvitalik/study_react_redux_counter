@@ -12,6 +12,7 @@ function decrease(num){
 function incrementOdd(num){
 	const isOdd = (num % 2 !== 0) ? true : false;
 	if (isOdd) return num + 1;
+	return num;
 }
 
 export default function countReducer(state = initialState, action){
