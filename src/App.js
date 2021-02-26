@@ -1,5 +1,6 @@
 import React, { Component, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { asyncUpdate } from './store/reducers/countSlice';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -26,6 +27,10 @@ export default function SpacingGrid(props) {
 
   function defType(event){
     let typeAction = event.currentTarget.dataset.type;
+    if (typeAction === 'asyncIncrement') {
+      dispatch(asyncUpdate());
+      return false;
+    }
     dispatch({type: 'count/' + typeAction, payload: ''});
   }
 

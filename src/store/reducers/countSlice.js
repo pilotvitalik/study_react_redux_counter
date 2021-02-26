@@ -38,6 +38,11 @@ export default function countReducer(state = initialState, action){
 				...state,
 				number:	incrementOdd(state.number),	
 			}
+		case 'count/asyncIncrement':
+			return {
+				...state,
+				number: increment(state.number),
+			}
 		default:
 			return state;
 	}
@@ -47,6 +52,10 @@ export async function fetchTodos(dispatch, getState) {
   dispatch({ type: 'count/initVal', payload: {number: 1} });
 }
 
-export async function incrementAsync(dispatch, getState){
-	dispatch({type: 'count/asyncIncrement', payload: 1});
+export function asyncUpdate(){
+	return async function incrementAsync(dispatch, getState){
+		setTimeout(() => {
+			dispatch({type: 'count/asyncIncrement', payload: ''});
+		}, 2000)
+	}
 }
