@@ -7,6 +7,10 @@ import reportWebVitals from './reportWebVitals';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import { fetchTodos } from './store/reducers/countSlice';
+
+store.dispatch(fetchTodos)
+
 ReactDOM.render(
   <React.StrictMode>
   	<Provider store={store}>

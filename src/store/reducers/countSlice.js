@@ -1,6 +1,4 @@
-const initialState = {
-	number: 1,
-};
+const initialState = {};
 
 function increment(num){
 	return num + 1;
@@ -17,10 +15,18 @@ function incrementOdd(num){
 
 export default function countReducer(state = initialState, action){
 	switch(action.type){
-		case 'count/increment':
+		case 'applyMiddleware':
 			return {
 				...state,
 				number: increment(state.number),
+			}
+		case 'count/initVal':{
+			return action.payload
+		}
+		case 'count/increment':
+			return {
+				...state,
+				number:	increment(state.number),
 			}
 		case 'count/decrease':
 			return {
@@ -35,4 +41,12 @@ export default function countReducer(state = initialState, action){
 		default:
 			return state;
 	}
+}
+
+export async function fetchTodos(dispatch, getState) {
+  dispatch({ type: 'count/initVal', payload: {number: 1} });
+}
+
+export async function incrementAsync(dispatch, getState){
+	dispatch({type: 'count/asyncIncrement', payload: 1});
 }
